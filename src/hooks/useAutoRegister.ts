@@ -43,12 +43,19 @@ export function useAutoRegister() {
             }
 
             return data;
-        } catch (err: any) {
-            const msg = err?.response?.data?.message || 'Unable to sync identity with backend.';
+        } catch (err: unknown) {
+            let msg = 'Unable to sync identity with backend.';
+            if (err && typeof err === 'object' && 'response' in err) {
+                const axiosError = err as { response?: { data?: { message?: string } } };
+                msg = axiosError.response?.data?.message || msg;
+            } else if (err instanceof Error) {
+                msg = err.message;
+            }
             setError(msg);
             console.error('Auto-register error:', err);
             throw err;
-        } finally {
+        }
+ finally {
             setIsRegistering(false);
         }
     }, [setSession, setKycStatus]);

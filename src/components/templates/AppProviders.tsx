@@ -38,10 +38,10 @@ export function AppProviders({ children }: { children: ReactNode }) {
     }), []);
 
     const externalWalletConfig = useMemo(() => ({
-        wallets: ["METAMASK", "COINBASE", "RAINBOW", "RABBY"] as any[],
+        wallets: ["METAMASK", "COINBASE", "RAINBOW", "RABBY"] as ("METAMASK" | "COINBASE" | "RAINBOW" | "RABBY")[],
         evmConnector: {
             config: {
-                chains: [arbitrumSepolia] as any,
+                chains: [arbitrumSepolia] as [typeof arbitrumSepolia, ...typeof arbitrumSepolia[]],
                 transports: { [arbitrumSepolia.id]: http() },
             },
         },

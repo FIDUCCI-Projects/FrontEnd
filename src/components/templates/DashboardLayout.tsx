@@ -35,6 +35,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
     }, []);
 
@@ -63,27 +64,27 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             {/* TOP BAR — Navigation + Identity */}
             <header className="h-14 bg-black/40 backdrop-blur-xl border-b border-white/5 flex items-center px-6 justify-between sticky top-0 z-[100]">
                 <div className="flex items-center gap-8">
-                    <a href="/" className="flex items-center group">
+                    <Link href="/" className="flex items-center group">
                         <RebekaLogo size="sm" className="group-hover:scale-105 transition-transform" />
-                    </a>
+                    </Link>
 
                     <nav className="hidden lg:flex items-center gap-1 border-l border-white/10 pl-8">
                         {[
                             { href: '/dashboard', label: 'Dashboard' },
                             { href: '/dapp/projects', label: 'Marketplace' },
                         ].map((link) => (
-                            <a
+                            <Link
                                 key={link.href}
                                 href={link.href}
                                 className={cn(
                                     "px-4 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-widest transition-all",
-                                    typeof window !== 'undefined' && window.location.pathname === link.href
+                                    pathname === link.href
                                         ? "bg-white/10 text-white border border-white/10"
                                         : "text-white/40 hover:text-white hover:bg-white/5"
                                 )}
                             >
                                 {link.label}
-                            </a>
+                            </Link>
                         ))}
                     </nav>
                 </div>

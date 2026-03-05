@@ -55,9 +55,16 @@ export const InvestmentForm = ({ tokenAddress, pricePerToken, onCheckoutReady }:
             } else {
                 throw new Error("INVALID_SERVER_RESPONSE: SECURE_CHANNEL_ERROR");
             }
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error("Checkout Error:", err);
-            setError(err?.response?.data?.message || err?.message || "CHECKOUT_INITIALIZATION_FAILED: Try again later.");
+            let errorMessage = "CHECKOUT_INITIALIZATION_FAILED: Try again later.";
+            if (err && typeof err === 'object' && 'response' in err) {
+                const axiosError = err as { response?: { data?: { message?: string } } };
+                errorMessage = axiosError.response?.data?.message || errorMessage;
+            } else if (err instanceof Error) {
+                errorMessage = err.message;
+            }
+            setError(errorMessage);
         } finally {
             setIsLoading(false);
         }

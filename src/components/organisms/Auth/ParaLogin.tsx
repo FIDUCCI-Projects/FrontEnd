@@ -40,8 +40,9 @@ export const ParaLogin = () => {
                     setTimeout(() => {
                         router.push("/dashboard");
                     }, 600);
-                } catch (err: any) {
-                    console.error("Identity Sync Error:", err);
+                } catch (err: unknown) {
+                    const errorMessage = err instanceof Error ? err.message : String(err);
+                    console.error("Identity Sync Error:", errorMessage);
                     setLocalError(registerError || "IDENTITY_SYNC_FAILURE");
                     setPhase('idle');
                 }
