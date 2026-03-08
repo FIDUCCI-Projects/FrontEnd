@@ -1,4 +1,4 @@
-# REBEKA: Real Estate Blockchain Ekosystem Arbitrum | Investor dApp
+# FIDUCCI| Investor dApp
 
 ![REBEKA dApp Banner](https://via.placeholder.com/1200x400?text=REBEKA+Protocol+-+Investor+Interface) > **The user-facing interface for the REBEKA Protocol. Bridging institutional real estate with on-chain liquidity on Arbitrum Stylus.**
 
