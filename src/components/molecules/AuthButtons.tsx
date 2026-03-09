@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { ArrowRight, LogOut, Loader2 } from "lucide-react";
 import { Button } from "@/components/atoms";
 import Link from "next/link";
-import { useModal, useAccount } from "@getpara/react-sdk";
+import { useModal, useAccount, useLogout } from "@getpara/react-sdk";
 import { useAutoRegister } from "@/hooks/useAutoRegister";
 import { useRouter } from "next/navigation";
 
@@ -16,6 +16,7 @@ export function HeaderAuthButton() {
     // Para Logic
     const { isOpen, openModal } = useModal();
     const { isConnected, embedded } = useAccount();
+    const { logout: logoutPara } = useLogout();
     const { register, isRegistering } = useAutoRegister();
     const router = useRouter();
     const [isSyncing, setIsSyncing] = useState(false);
@@ -46,6 +47,17 @@ export function HeaderAuthButton() {
         }
     }, [isConnected, embedded, userId, isSyncing, register, router]);
 
+    const handleLogout = async () => {
+        try {
+            await logoutPara();
+            logout(); // Clear Zustand store
+            router.push('/'); // Redirect to home
+        } catch (err) {
+            console.error("Logout Error:", err);
+            logout(); // Fallback to clear store even if SDK logout fails
+        }
+    };
+
     if (!mounted) return <div className="w-[120px] h-[40px] animate-pulse rounded-xl bg-white/5" />;
 
     const formattedWallet = walletAddress
@@ -60,7 +72,7 @@ export function HeaderAuthButton() {
             </div>
             <div
                 className="w-10 h-10 rounded-xl bg-gradient-to-br from-white/10 to-transparent border border-white/10 flex items-center justify-center p-[1px] group cursor-pointer"
-                onClick={logout}
+                onClick={handleLogout}
                 title="Disconnect Wallet"
             >
                 <div className="w-full h-full rounded-[10px] bg-black/40 flex items-center justify-center group-hover:bg-red-500/10 transition-colors">
@@ -77,7 +89,7 @@ export function HeaderAuthButton() {
                         Connecting...
                     </>
                 ) : (
-                    "Connect Wallet"
+                    "Launch Portal"
                 )}
             </span>
         </Button>

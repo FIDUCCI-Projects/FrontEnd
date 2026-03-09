@@ -1,10 +1,34 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import { Typography, GlassCard } from "@/components/atoms";
 import { ShieldCheck, ArrowUpRight, Target, Zap, History } from "lucide-react";
 import { UserDataResponse, CheckoutOperation } from "@/hooks/useUserData";
 import { getTokenConfig } from "@/lib/config/tokens";
+
+function useAnimatedNumber(end: number, duration: number = 2000) {
+    const [value, setValue] = useState(0);
+    useEffect(() => {
+        if (!end) return;
+        let startTimestamp: number | null = null;
+        let animationFrame: number;
+        const step = (timestamp: number) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+            setValue(end * easeProgress);
+            if (progress < 1) {
+                animationFrame = requestAnimationFrame(step);
+            } else {
+                setValue(end);
+            }
+        };
+        animationFrame = requestAnimationFrame(step);
+        return () => cancelAnimationFrame(animationFrame);
+    }, [end, duration]);
+    return value;
+}
 
 const BriefcaseIcon = ({ className }: { className: string }) => (
     <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -32,6 +56,7 @@ export const Portfolio = ({ portfolioData = [], operations = [], isLoading, wall
 
     const displayTokens = totalTokens;
     const displayValueUsd = displayTokens * (firstTokenCfg?.pricePerToken || 30);
+    const animatedValueUsd = useAnimatedNumber(displayValueUsd);
     const sparklineData = [40, 55, 35, 60, 45, 70, 50, 65, 55, 75, 60, 80, 65, 70, 85, 75, 90, 80, 85, 95];
 
     return (
@@ -70,7 +95,7 @@ export const Portfolio = ({ portfolioData = [], operations = [], isLoading, wall
                             <div className="h-8 w-24 bg-white/10 rounded-md animate-pulse" />
                         ) : (
                             <>
-                                <span className="text-2xl font-mono font-bold text-[--rebeka-primary]">${displayValueUsd.toLocaleString()}</span>
+                                <span className="text-2xl font-mono font-bold text-[--rebeka-primary]">${Math.round(animatedValueUsd).toLocaleString('en-US')}</span>
                                 <span className="text-[10px] font-mono text-white/30 uppercase">USD</span>
                             </>
                         )}
@@ -178,7 +203,7 @@ export const Portfolio = ({ portfolioData = [], operations = [], isLoading, wall
                                                 <div className="flex items-center gap-2 mb-1">
                                                     <Typography variant="p" className="text-white font-bold tracking-tight">{displayName}</Typography>
                                                     <div className="px-1.5 py-0.5 rounded-sm bg-blue-500/10 text-[--rebeka-primary] text-[8px] font-bold border border-blue-500/20 uppercase tracking-tighter">Verified</div>
-                                                    <div className="px-1.5 py-0.5 rounded-sm bg-[--color-success]/10 text-[--color-success] text-[8px] font-bold border border-[--color-success]/20 uppercase tracking-tighter flex items-center gap-0.5">
+                                                    <div className="px-1.5 py-0.5 rounded-sm bg-[--color-success]/10 text-[--color-success] text-[8px] font-bold border border-[--color-success]/20 uppercase tracking-tighter flex items-center gap-0.5" title="Status: Oracle Active - Verifying On-Chain Data">
                                                         <ShieldCheck className="w-2.5 h-2.5" /> CRE
                                                     </div>
                                                 </div>

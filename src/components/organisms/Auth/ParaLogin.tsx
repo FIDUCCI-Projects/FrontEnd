@@ -129,21 +129,31 @@ export const ParaLogin = () => {
                         </div>
                     )}
 
-                    <button
-                        onClick={handleParaLoginClick}
-                        disabled={isProcessing}
-                        className="w-full group/btn relative h-16 rounded-2xl bg-white text-black font-black uppercase text-xs tracking-[0.2em] hover:bg-[--rebeka-primary] transition-all flex items-center justify-center gap-3 overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_10px_40px_rgba(255,255,255,0.1)]"
-                    >
-                        {isProcessing ? (
-                            activePhaseLabel || "Processing..."
-                        ) : (
-                            <>
-                                Connect Wallet
-                                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                            </>
-                        )}
-                        <div className="absolute inset-x-0 bottom-0 h-1 bg-black/10 scale-x-0 group-hover/btn:scale-x-100 transition-transform origin-left" />
-                    </button>
+                    <div className="w-full space-y-4">
+                        <div className="relative">
+                            <input
+                                type="email"
+                                placeholder="Email Address (e.g. investor@vc-firm.com)"
+                                defaultValue="investor@vc-firm.com"
+                                className="w-full h-14 px-5 rounded-xl bg-black/60 border border-white/10 text-sm font-mono text-white focus:outline-none focus:border-[--rebeka-primary]/50 transition-colors"
+                            />
+                        </div>
+                        <button
+                            onClick={handleParaLoginClick}
+                            disabled={isProcessing}
+                            className="w-full group/btn relative h-16 rounded-2xl bg-white text-black font-black uppercase text-xs tracking-[0.2em] hover:bg-[--rebeka-primary] transition-all flex items-center justify-center gap-3 overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_10px_40px_rgba(255,255,255,0.1)]"
+                        >
+                            {isProcessing ? (
+                                activePhaseLabel || "Processing..."
+                            ) : (
+                                <>
+                                    Sign in with Email
+                                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                                </>
+                            )}
+                            <div className="absolute inset-x-0 bottom-0 h-1 bg-black/10 scale-x-0 group-hover/btn:scale-x-100 transition-transform origin-left" />
+                        </button>
+                    </div>
 
                     <div className="w-full pt-4 border-t border-white/5">
                         <p className="text-[9px] text-white/20 font-bold uppercase tracking-[0.3em] leading-relaxed">

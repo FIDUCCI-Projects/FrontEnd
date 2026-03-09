@@ -5,12 +5,16 @@ function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
-interface RebekaLogoProps {
+interface FiducciLogoProps {
     className?: string;
     size?: 'sm' | 'md' | 'lg';
 }
 
-export const RebekaLogo = ({ className, size = 'md' }: RebekaLogoProps) => {
+/**
+ * FiducciLogo component
+ * Renders the official brand logo for FIDUCCI.
+ */
+export const FiducciLogo = ({ className, size = 'md' }: FiducciLogoProps) => {
     const sizeClasses = {
         sm: "text-xl tracking-[0.04em]",
         md: "text-[1.75rem] tracking-[0.06em]",

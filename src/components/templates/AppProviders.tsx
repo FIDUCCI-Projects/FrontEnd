@@ -38,7 +38,12 @@ export function AppProviders({ children }: { children: ReactNode }) {
     }), []);
 
     const externalWalletConfig = useMemo(() => ({
-        wallets: ["METAMASK", "COINBASE", "RAINBOW", "RABBY"] as ("METAMASK" | "COINBASE" | "RAINBOW" | "RABBY")[],
+        wallets: ["METAMASK", "COINBASE", "RAINBOW", "RABBY"] as any[],
+        walletConnect: {
+            // A valid WalletConnect Project ID is required for generating QR codes 
+            // when extensions like MetaMask or Rainbow are not present.
+            projectId: "YOUR_WALLETCONNECT_PROJECT_ID"
+        },
         evmConnector: {
             config: {
                 chains: [arbitrumSepolia] as [typeof arbitrumSepolia, ...typeof arbitrumSepolia[]],

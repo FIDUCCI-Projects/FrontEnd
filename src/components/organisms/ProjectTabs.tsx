@@ -53,7 +53,7 @@ export const ProjectTabs = ({ project }: ProjectTabsProps) => {
                                         <span className="block text-[10px] font-black text-white/50 uppercase tracking-[0.2em] mb-2">Asset Parity</span>
                                         <div className="inline-block px-3 py-2 bg-[--rebeka-primary-dim] rounded-md border border-[--rebeka-primary-glow]">
                                             <span className="text-sm font-medium text-[--rebeka-primary] block leading-snug">
-                                                1 $RBEK-Chiq = 1 m² of Land
+                                                1 $GPUE = 1 m² of Land
                                             </span>
                                         </div>
                                     </div>

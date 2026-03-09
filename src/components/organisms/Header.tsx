@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { RebekaLogo } from "@/components/atoms";
+import { FiducciLogo } from "@/components/atoms";
 import { HeaderAuthButton } from "@/components/molecules";
 
 export function Header() {
@@ -9,7 +9,7 @@ export function Header() {
                 <div className="max-w-7xl mx-auto flex items-center justify-between">
                     <div className="flex items-center gap-8">
                         <Link href="/" className="flex items-center group">
-                            <RebekaLogo size="md" className="group-hover:scale-105 transition-transform" />
+                            <FiducciLogo size="md" className="group-hover:scale-105 transition-transform" />
                         </Link>
 
                         <nav className="hidden md:flex items-center gap-1 border-l border-white/10 pl-8">

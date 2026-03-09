@@ -14,6 +14,7 @@ export * from "./BuyTokenModal";
 export * from "./AssetBuySidebar";
 export * from "./AuthGuard";
 export * from "./ProjectTabs";
+export * from "./ChainlinkAuditPanel";
 export * from "./Dashboard/DashboardTabs";
 export * from "./Dashboard/OverviewTab";
 export * from "./Dashboard/PortfolioTab";

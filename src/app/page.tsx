@@ -1,4 +1,4 @@
-import { GlassCard, Typography, RebekaLogo } from '@/components/atoms';
+import { GlassCard, Typography, FiducciLogo } from '@/components/atoms';
 import { projectsData } from '@/lib/data/projects';
 import { ArrowRight, MapPin, TrendingUp, Ruler } from "lucide-react";
 import Link from "next/link";
@@ -32,17 +32,17 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row items-start gap-4 opacity-0 animate-[fade-in-up_0.8s_ease-out_forwards_0.45s]">
             <Link
-              href="/dapp/projects"
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-secondary text-background font-bold text-sm tracking-wide hover:bg-secondary/90 hover:-translate-y-0.5 transition-all"
+              href="/dapp"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl bg-secondary text-background font-bold text-sm tracking-wide hover:bg-secondary/90 hover:-translate-y-0.5 transition-all shadow-[0_0_20px_rgba(var(--secondary-rgb),0.3)]"
             >
-              Explore Marketplace
+              Launch Portal
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/dapp"
+              href="/dapp/projects"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-white/10 text-white/70 font-medium text-sm tracking-wide hover:border-white/25 hover:text-white hover:-translate-y-0.5 transition-all"
             >
-              Launch Portal
+              Explore Marketplace
             </Link>
           </div>
         </div>
@@ -434,7 +434,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-6">
-              <RebekaLogo size="sm" />
+              <FiducciLogo size="sm" />
               <span className="text-[10px] text-text-muted uppercase font-bold tracking-widest">
                 © 2026 FIDUCCI Protocol. The Trust Stack for Real World Assets.
               </span>

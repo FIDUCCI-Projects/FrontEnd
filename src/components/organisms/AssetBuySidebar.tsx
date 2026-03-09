@@ -54,7 +54,7 @@ export const AssetBuySidebar = ({ project }: AssetBuySidebarProps) => {
                         onClick={() => setIsBuyModalOpen(true)}
                         className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-[--rebeka-primary] font-black uppercase text-[11px] tracking-[0.2em] text-black hover:bg-white hover:shadow-[0_0_30px_var(--rebeka-primary-dim)] hover:scale-[1.02] transition-all duration-300 group/btn"
                     >
-                        Buy Tokens
+                        COMPRAR TOKENS
                         <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:scale-110 transition-all" />
                     </button>
 

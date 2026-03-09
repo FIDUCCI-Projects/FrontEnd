@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Typography, GlassCard } from "@/components/atoms";
 import { X, CreditCard, Wallet, Loader2, CheckCircle2, ShoppingCart } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface BuyTokenModalProps {
     projectTitle: string;
@@ -22,6 +23,7 @@ export const BuyTokenModal = ({
     const [quantity, setQuantity] = useState<string>("100");
     const [paymentMethod, setPaymentMethod] = useState<'card' | 'usdc' | null>(null);
     const [phase, setPhase] = useState<'input' | 'confirming' | 'success'>('input');
+    const router = useRouter();
 
     const numericQuantity = parseInt(quantity) || 0;
     const total = numericQuantity * pricePerToken;
@@ -39,6 +41,11 @@ export const BuyTokenModal = ({
         // Simulate payment processing
         setTimeout(() => {
             setPhase('success');
+            setTimeout(() => {
+                onSuccess();
+                onClose();
+                router.push('/dashboard');
+            }, 2500);
         }, 2500);
     };
 

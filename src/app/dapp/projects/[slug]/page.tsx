@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from 'next/navigation';
-import { AssetBuySidebar, ProjectTabs } from '@/components/organisms';
+import { AssetBuySidebar, ProjectTabs, ChainlinkAuditPanel } from '@/components/organisms';
 import { GlassCard, Typography } from '@/components/atoms';
 import { getProjectBySlug, ProjectItem } from '@/lib/data/projects';
 import { MapPin, Home, Target } from "lucide-react";
@@ -98,8 +98,22 @@ export default async function ProjectDetailTemplate({ params }: { params: Promis
 
             {/* ═══ BENTO BOX LAYOUT ═══ */}
             <div className="max-w-6xl mx-auto px-6 mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pb-24">
-                <div className="lg:col-span-8">
+                <div className="lg:col-span-8 space-y-12">
                     <ProjectTabs project={project} />
+
+                    {/* ═══ CHAINLINK AUDIT PANEL ═══ */}
+                    <div id="audit-panel" className="pt-8 border-t border-white/5">
+                        <div className="flex items-center gap-3 mb-8">
+                            <div className="h-px w-12 bg-[--rebeka-success]" />
+                            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-[--rebeka-success] font-bold">Real-Time Audit Terminal</span>
+                        </div>
+                        <Typography variant="h2" className="text-white mb-6">
+                            Verified via <span className="text-[--rebeka-success]">Chainlink CRE</span>
+                        </Typography>
+                        <div className="max-w-2xl">
+                            <ChainlinkAuditPanel />
+                        </div>
+                    </div>
                 </div>
 
                 {/* ═══ INTERACTIVE BUY SIDEBAR ═══ */}
